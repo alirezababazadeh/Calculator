@@ -1,6 +1,7 @@
 import Operators.Operator;
 import Operators.OperatorService;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -28,15 +29,31 @@ public class Menu {
         throw new CloneNotSupportedException();
     }
 
-    public void show() {
+    public Menu show() {
         if (!Menu.getInstance().isGenerated) {
             this.generate();
         }
         operators.keySet().forEach(System.out::println);
+        return this;
     }
 
     public Method getOperator(String name) {
         return operators.get(name);
+    }
+
+    public void runCommand() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Write your operator:");
+        Method operator = this.getOperator(scanner.nextLine());
+        System.out.println("Enter first number:");
+        Double first = scanner.nextDouble();
+        System.out.println("Enter second number:");
+        Double second = scanner.nextDouble();
+        try {
+            operator.invoke(new OperatorService(), first, second);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generate() {
