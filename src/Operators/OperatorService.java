@@ -9,7 +9,7 @@ public class OperatorService {
 
     @Operator(name = "-")
     public Double minusValues(Double first, Double second) {
-        return 0.0;
+        return first - second;
     }
 
     @Operator(name = "*")
