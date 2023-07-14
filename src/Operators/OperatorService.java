@@ -14,7 +14,7 @@ public class OperatorService {
 
     @Operator(name = "*")
     public Double multipleValues(Double first, Double second) {
-        return 0.0;
+        return first * second;
     }
 
     @Operator(name = "/")
