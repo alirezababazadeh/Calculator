@@ -19,7 +19,7 @@ public class OperatorService {
 
     @Operator(name = "/")
     public Double divisionValues(Double first, Double second) {
-        return 0.0;
+        return first * second;
     }
 
     @Operator(name = "%")
