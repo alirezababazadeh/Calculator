@@ -24,7 +24,7 @@ public class OperatorService {
 
     @Operator(name = "%")
     public Double modValues(Double first, Double second) {
-        return first + second;
+        return first % second;
     }
 
     @Operator(name = "|")
